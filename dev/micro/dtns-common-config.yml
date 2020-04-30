@@ -1,0 +1,60 @@
+dtns:
+  micro:
+    serverIp: 192.168.0.118
+
+    eurekaUserName: admin
+    eurekaPassword: admin
+    # 数据库配置
+    datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://${dtns.micro.serverIp}:3306/dtns-user?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      user-url: jdbc:mysql://${dtns.micro.serverIp}:3306/dtns-user-temp?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      dt-micro-base-url: jdbc:mysql://${dtns.micro.serverIp}:3306/dt-micro-base?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      dt-dams-url: jdbc:mysql://${dtns.micro.serverIp}:3306/dt-dams?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      dt-dams-product-url: jdbc:mysql://${dtns.micro.serverIp}:3306/dt-micro-products?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+      dt-order-url: jdbc:mysql://${dtns.micro.serverIp}:3306/dt-micro-order?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      dt-sz-url: jdbc:mysql://${dtns.micro.serverIp}:3306/dt-sz?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      dt-micro-preventive-url: jdbc:mysql://${dtns.micro.serverIp}:3306/dt_crop_spray_statistics?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      username: admin
+      password: nZ_123456
+      type: com.alibaba.druid.pool.DruidDataSource
+
+    #Redis服务器配置
+    redis:
+      host: ${dtns.micro.serverIp}
+      port: 43790
+      timeout: 10000
+
+    #kafka配置
+    stream:
+      kafka:
+        binder:
+          brokers: ${dtns.micro.serverIp}:9092
+          zk-nodes: ${dtns.micro.serverIp}:2181
+
+    #上传文件大小配置
+    servlet:
+      multipart:
+        max-file-size: 500MB
+        max-request-size: 500MB
+
+    #分布式事务管理器地址
+    tx-lcn:
+      client:
+        manager-address: 192.168.0.118:19990
+    #redis缓存使用的数据库索引
+    rediscache:
+      database: 2
+
+
+spring:
+  profiles:
+    active: dev
+
+#只有非正式环境会用到
+serverIp: ${dtns.micro.serverIp}
+
+#请求处理的超时时间
+ribbon.ReadTimeout: 120000
+#请求连接的超时时间
+ribbon.ConnectTimeout: 30000

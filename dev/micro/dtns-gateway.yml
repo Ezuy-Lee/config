@@ -1,0 +1,131 @@
+server:
+  port: 8763
+
+
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: ${dtns.micro.servlet.multipart.max-file-size}
+      max-request-size: ${dtns.micro.servlet.multipart.max-request-size}
+
+eureka:
+  instance:
+    hostname: server.eureka.com
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+zuul:
+  routes:
+    api-nongji:
+      path: /api-nongji/**
+      serviceId: dtns-nongji
+    api-area:
+      path: /api-area/**
+      serviceId: dtns-area
+    api-dams:
+      path: /api-dams/**
+      serviceId: dtns-dams
+    api-user:
+      path: /api-user/**
+      serviceId: dtns-user
+    api-wiser:
+      path: /api-wiser/**
+      serviceId: dtns-wiser
+    api-cams:
+      path: /api-cams/**
+      serviceId: dtns-cams
+    api-sms:
+      path: /api-sms/**
+      serviceId: dtns-sms
+    api-id:
+      path: /api-id/**
+      serviceId: dtns-id
+    api-dfs:
+      path: /api-dfs/**
+      serviceId: dtns-dfs
+    api-redis:
+      path: /api-redis/**
+      serviceId: dtns-redis
+    api-wx:
+      path: /api-wx/**
+      serviceId: dtns-wx
+    api-ai:
+      path: /api-ai/**
+      serviceId: dtns-ai
+    api-company:
+      path: /api-company/**
+      serviceId: dtns-company
+    api-express:
+      path: /api-express/**
+      serviceId: dtns-express
+    api-oauth:
+      path: /api-oauth/**
+      sensitiveHeaders:
+      serviceId: dtns-oauth
+    api-power:
+      path: /api-power/**
+      serviceId: dtns-power
+    api-mechanism:
+      path: /api-mechanism/**
+      serviceId: dtns-mechanism
+    api-dams-user:
+      path: /api-dams-user/**
+      serviceId: dtns-dams-user
+    api-qrcode:
+      path: /api-qrcode/**
+      serviceId: dtns-qrcode
+    api-esign:
+      path: /api-esign/**
+      serviceId: dtns-esign
+    api-print:
+      path: /api-print/**
+      serviceId: dtns-print
+    api-push:
+      path: /api-push/**
+      serviceId: dtns-push
+    api-product:
+      path: /api-product/**
+      serviceId: dtns-product
+    api-order:
+      path: /api-order/**
+      serviceId: dtns-order
+    api-sz:
+      path: /api-sz/**
+      serviceId: dtns-sz
+    api-farm:
+      path: /api-farm/**
+      serviceId: dtns-data-farm
+    api-zhny-user:
+      path: /api-zhny-user/**
+      serviceId: dtns-data-user
+    api-preventive:
+      path: /api-preventive/**
+      serviceId: dtns-data-preventive
+  add-proxy-headers: true
+
+#security:
+#  oauth2:
+#    client:
+#      access-token-uri: http://${eureka.instance.hostname}:8763/api-oauth/oauth/token
+#      user-authorization-uri: http://${eureka.instance.hostname}:8763/api-oauth/oauth/authorize
+#      client-id: webapp
+#    resource:
+#      user-info-uri: http://${eureka.instance.hostname}:8763/api-oauth/user
+#      prefer-token-info: false
+
+##设置超时时间 9 秒
+ribbon:
+  ReadTimeout: 900000
+  SocketTimeout: 100000
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 900000
+
+
