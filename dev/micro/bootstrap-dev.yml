@@ -5,8 +5,8 @@ spring:
     user:
       name: admin
       password: admin
-  #profiles:
-  #  include: subversion
+  profiles:
+    include: git
   #cloud:
   #  config:
   #    enabled: true
@@ -31,7 +31,7 @@ spring:
           username: ezuylee@gmail.com
           password: dev1234%^&*
           default-label: H:\\liyuze-workspace\\datian-cloud\\config
-          basedir: H:\\liyuze-workspace\\datian-cloud\\config
+          basedir: H:\\liyuze-workspace\\datian-cloud\\config-repo
       label: master
 
     #stream:
@@ -40,11 +40,11 @@ spring:
     #      brokers: 192.168.0.118:9092
     #      zk-nodes: 192.168.0.118:2181
 
-    #rabbitmq: # MQ消息总线。配置中心要想动态更新所有config client的bean属性值的话，通过消息总线实现
-    #  host: localhost
-    #  port: 5672
-    #  username: guest
-    #  password: guest
+    rabbitmq: # MQ消息总线。配置中心要想动态更新所有config client的bean属性值的话，通过消息总线实现
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
 
 server:
   port: 18762
