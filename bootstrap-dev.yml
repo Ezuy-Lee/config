@@ -30,8 +30,8 @@ spring:
           search-paths: config/**
           username: ezuylee@gmail.com
           password: dev1234%^&*
-          default-label: config
-          basedir: config-repo
+          default-label: H:\\liyuze-workspace\\datian-cloud\\config
+          basedir: H:\\liyuze-workspace\\datian-cloud\\config
       label: master
 
     #stream:
@@ -40,14 +40,14 @@ spring:
     #      brokers: 192.168.0.118:9092
     #      zk-nodes: 192.168.0.118:2181
 
-    rabbitmq: # MQ消息总线。配置中心要想动态更新所有config client的bean属性值的话，通过消息总线实现
-      host: localhost
-      port: 5672
-      username: guest
-      password: guest
+    #rabbitmq: # MQ消息总线。配置中心要想动态更新所有config client的bean属性值的话，通过消息总线实现
+    #  host: localhost
+    #  port: 5672
+    #  username: guest
+    #  password: guest
 
 server:
-  port: 8762
+  port: 18762
 
 
 eureka:
